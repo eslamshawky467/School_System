@@ -1,0 +1,105 @@
+@extends('layouts.master')
+@section('css')
+    @toastr_css
+@section('title')
+    اضافة سؤال جديد
+@stop
+@endsection
+@section('page-header')
+    <!-- breadcrumb -->
+@section('PageTitle')
+    اضافة سؤال جديد
+@stop
+<!-- breadcrumb -->
+@endsection
+@section('content')
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12 mb-30">
+            <div class="card card-statistics h-100">
+                <div class="card-body">
+
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ session()->get('error') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <br>
+                            <form action="{{ route('questions.store') }}" method="post" autocomplete="off">
+                                @csrf
+                                <div class="form-row">
+
+                                    <div class="col">
+                                        <label for="title">اسم السؤال</label>
+                                        <input type="text" name="title" id="input-name"
+                                               class="form-control form-control-alternative" autofocus>
+                                        <input type="hidden" value="{{$quizz_id}}" name="quizz_id">
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">A</label>
+                                        <input name="option1" class="form-control" id="exampleFormControlTextarea1"
+                                               rows="4"></input>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">B</label>
+                                        <input name="option2" class="form-control" id="exampleFormControlTextarea1"
+                                               rows="4"></input>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">C</label>
+                                        <input name="option3" class="form-control" id="exampleFormControlTextarea1"
+                                               rows="4"></input>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">D</label>
+                                        <input name="option4" class="form-control" id="exampleFormControlTextarea1"
+                                               rows="4"></input>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">الاجابة الصحيحة
+                                        :</label>
+                                    <select name="correct"
+                                            id="exampleFormControlTextarea1" class="form-select" aria-label="Default select example" required>
+                                        <option value="1">A</option>
+                                        <option value="2">B</option>
+                                        <option value="3">c</option>
+                                        <option value="4">D</option>
+                                    </select>
+                                </div>
+                                <br>
+
+
+                                </div>
+                                <br>
+                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">حفظ البيانات</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- row closed -->
+@endsection
+@section('js')
+    @toastr_js
+    @toastr_render
+@endsection
